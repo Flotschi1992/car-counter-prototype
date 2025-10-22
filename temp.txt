@@ -24,3 +24,59 @@ models/
     mobilenet_iter_73000.caffemodel
 
     von github gezogen und hochgeladen -> https://github.com/chuanqi305/MobileNet-SSD/tree/master
+
+
+---------------------------------------------------------
+
+1. Environment Setup
+
+Created a Python 3.10.19 environment in GitHub Codespaces.
+Installed dependencies via requirements.txt:
+numpy==1.26.4
+opencv-python==4.10.0.84
+ultralytics==8.2.0
+matplotlib==3.9.2
+
+Downloaded MobileNet SSD model files:
+
+deploy.prototxt
+mobilenet_iter_73000.caffemodel
+
+2. Initial Video Handling
+
+Verified video loading with OpenCV and displayed the first frame using matplotlib.
+Learned how to embed MP4 videos in Jupyter using:
+Pythonfrom IPython.display import VideoVideo("path_to_video.mp4", embed=True)Weitere Zeilen anzeigen
+
+
+3. Object Detection with MobileNet SSD
+
+Loaded the MobileNet SSD model using:
+Pythonnet = cv2.dnn.readNetFromCaffe(prototxt_path, model_path)Weitere Zeilen anzeigen
+
+Implemented detection logic:
+
+Converted frames to blobs.
+Ran net.forward() for inference.
+Filtered detections by confidence and class (car, bus, person).
+
+
+4. ID Assignment
+
+Started with a simple tracker that just assigned incremental IDs per frame.
+Then upgraded to a persistent Centroid Tracker:
+
+Maintains consistent IDs across frames.
+Handles disappearing/reappearing objects.
+Uses Euclidean distance matching.
+
+5. Output
+
+Created a script to:
+
+Process the entire video.
+Draw IDs and centroids on frames.
+Save the annotated video as output_tracked.mp4.
+Display it in Jupyter.
+
+ 
