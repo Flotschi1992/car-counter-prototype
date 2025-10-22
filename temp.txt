@@ -1,0 +1,26 @@
+hallo,
+
+wir beide sind dabei eine handy app zu schreiben mit dem man mit:
+ein Video einliest,
+MobileNet SSD nutzt,
+IDs ab 0 vergibt,
+und die Anzahl der vergebenen IDs anzeigt
+
+da ich das zum ersten mal mache, wollten wir das zuerst mit einem video auf dem PC probieren. Ich habe hierfür in GitHub codespace ein project angelegt.
+
+wir hatten einiges an problemen OpenCV mit numpy zu verbinden. Wir haben jetzt die umgebung auf python 3.10.19 gezogen und mit einem script requiremnts.txt die abhängigkeiten installiert
+
+numpy==1.26.4
+opencv-python==4.10.0.84
+ultralytics==8.2.0
+matplotlib==3.9.2
+
+das haben wir dann zum laufen gebracht.
+
+dann habe ich die files
+
+models/
+    deploy.prototxt
+    mobilenet_iter_73000.caffemodel
+
+    von github gezogen und hochgeladen -> https://github.com/chuanqi305/MobileNet-SSD/tree/master
