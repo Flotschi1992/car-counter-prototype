@@ -1,82 +1,45 @@
-hallo,
+Hallo,
 
-wir beide sind dabei eine handy app zu schreiben mit dem man mit:
-ein Video einliest,
-MobileNet SSD nutzt,
-IDs ab 0 vergibt,
-und die Anzahl der vergebenen IDs anzeigt
+ich möchte, um potentiellen Arbeitgegebern meine KI Fähigkeiten zu demonstrieren ein paar kleine Bastelprojekte machen.
+Zum Anfang hätte ich mir gedacht eine "Fahrzeugzähler" zu bauen.
 
-da ich das zum ersten mal mache, wollten wir das zuerst mit einem video auf dem PC probieren. Ich habe hierfür in GitHub codespace ein project angelegt.
+Endanforderung:
+- es soll auf einem Pixel 5 laufen
+- die Kamera des Handys soll als Datenquelle funktionieren
+- Ausgabe:
+    - die bisher gefunden autos sollen eingerahmt werden und eine fortlaufende ID bekommen
+    - ein Zähler soll die Anzahl alle bisher erkannten Fahrzeuge darstellen
 
-wir hatten einiges an problemen OpenCV mit numpy zu verbinden. Wir haben jetzt die umgebung auf python 3.10.19 gezogen und mit einem script requiremnts.txt die abhängigkeiten installiert
+Zwischenziel:
+- es soll in einem GitHub Codespace laufen
+- mit kleinen Änderungen soll es auf das Pixel portierbar schreiben
+- statt der Kamera soll ein Video verwendet werden
+- im allerersten Schritt sollen die Fahrzeuge nur eingerahmt werden
 
-numpy==1.26.4
-opencv-python==4.10.0.84
-ultralytics==8.2.0
-matplotlib==3.9.2
+Was bisher geschah:
+- es wurde ein skrip mit MobileNetSSD estellt, die 300x300 auflösung war alledings zu klein und 700x700 zu resourcenintensiv
 
-das haben wir dann zum laufen gebracht.
+Tech Stack:
+- YOLOv8 Nano
+- TensorFlow Lite (TFLite) when moved to Android Pixel 5
 
-dann habe ich die files
+Python 3.10 in use
 
-models/
-    deploy.prototxt
-    mobilenet_iter_73000.caffemodel
-
-    von github gezogen und hochgeladen -> https://github.com/chuanqi305/MobileNet-SSD/tree/master
-
-
----------------------------------------------------------
-
-1. Environment Setup
-
-Created a Python 3.10.19 environment in GitHub Codespaces.
-Installed dependencies via requirements.txt:
-numpy==1.26.4
-opencv-python==4.10.0.84
-ultralytics==8.2.0
-matplotlib==3.9.2
-
-Downloaded MobileNet SSD model files:
-
-deploy.prototxt
-mobilenet_iter_73000.caffemodel
-
-2. Initial Video Handling
-
-Verified video loading with OpenCV and displayed the first frame using matplotlib.
-Learned how to embed MP4 videos in Jupyter using:
-Pythonfrom IPython.display import VideoVideo("path_to_video.mp4", embed=True)Weitere Zeilen anzeigen
+Current folder structure -> tree
+.
+├── How2_Git.txt
+├── LICENSE
+├── Proj_Requirements.txt
+├── README.md
+├── models
+│   ├── deploy.prototxt
+│   ├── mobilenet_iter_73000.caffemodel
+│   └── yolov8n.pt
+├── notebooks
+│   ├── car_counter_pt.ipynb
+│   └── car_counter_pt.py
+├── requirements.txt
+└── videos
+    └── CarsOnAHighway_30fps.mp4
 
 
-3. Object Detection with MobileNet SSD
-
-Loaded the MobileNet SSD model using:
-Pythonnet = cv2.dnn.readNetFromCaffe(prototxt_path, model_path)Weitere Zeilen anzeigen
-
-Implemented detection logic:
-
-Converted frames to blobs.
-Ran net.forward() for inference.
-Filtered detections by confidence and class (car, bus, person).
-
-
-4. ID Assignment
-
-Started with a simple tracker that just assigned incremental IDs per frame.
-Then upgraded to a persistent Centroid Tracker:
-
-Maintains consistent IDs across frames.
-Handles disappearing/reappearing objects.
-Uses Euclidean distance matching.
-
-5. Output
-
-Created a script to:
-
-Process the entire video.
-Draw IDs and centroids on frames.
-Save the annotated video as output_tracked.mp4.
-Display it in Jupyter.
-
- 

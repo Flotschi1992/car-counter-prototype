@@ -1,4 +1,8 @@
 
+## Check State ################################################################
+
+    git status
+
 ## Add Changed Code ###########################################################
 
     git add .
@@ -17,4 +21,11 @@
     git add file-path/new-file-name
     git commit -m "why would I commit"
     git push    
+
+## rename a file ##############################################################  
+
+    git mv <oldname> <newname>
+    git commit -m "why would I commit"
+    git push    
+
 

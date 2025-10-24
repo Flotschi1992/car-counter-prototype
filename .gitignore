@@ -1,6 +1,6 @@
 # created output files shall be ignored
-output_tracked.mp4
-output_tracked_h264.mp4
+*.mp4
+notebooks/car_counter_pt.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
