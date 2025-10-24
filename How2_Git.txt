@@ -28,4 +28,10 @@
     git commit -m "why would I commit"
     git push    
 
+## merge back 2 main ##########################################################
+
+
+    git checkout main
+    git pull
+    git merge <your-current-branch-name>
 
