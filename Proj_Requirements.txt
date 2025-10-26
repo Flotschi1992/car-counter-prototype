@@ -14,13 +14,17 @@ Zwischenziel:
 - es soll in einem GitHub Codespace laufen
 - mit kleinen Änderungen soll es auf das Pixel portierbar schreiben
 - statt der Kamera soll ein Video verwendet werden
-- im allerersten Schritt sollen die Fahrzeuge nur eingerahmt werden
+- im 2ten schritt soll für jedes Fahrzeug eine IF auf dem Rahmen sichtbar sein
 
 Was bisher geschah:
 - es wurde ein skrip mit MobileNetSSD estellt, die 300x300 auflösung war alledings zu klein und 700x700 zu resourcenintensiv
+- das script wurde auf YOLOv8 Nano umgestellt 
+- das Tracking wird mit DeepSORT realisiert. Die Fahrzeuge werden nur in den untern 2/3 des Bildes gesucht um Resourcen zu sparen.
+- es wird nur jeder 2te Frame ausgwertet
 
 Tech Stack:
 - YOLOv8 Nano
+- Tracking Funktion DeepSORT
 - TensorFlow Lite (TFLite) when moved to Android Pixel 5
 
 Python 3.10 in use
@@ -31,6 +35,8 @@ Current folder structure -> tree
 ├── LICENSE
 ├── Proj_Requirements.txt
 ├── README.md
+├── VideoWithMarkedCars__.mp4
+├── VideoWithMarkedCars_compr.mp4
 ├── models
 │   ├── deploy.prototxt
 │   ├── mobilenet_iter_73000.caffemodel
